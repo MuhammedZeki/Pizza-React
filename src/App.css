@@ -1,0 +1,34 @@
+.font-roboto-condensed {
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+.font-barlow {
+  font-family: "Barlow", sans-serif;
+}
+.font-satisfy {
+  font-family: "Satisfy", cursive;
+}
+.ac {
+  padding: 1rem 3rem;
+}
+.tek {
+  margin-top: 4rem;
+}
+.px-1 {
+  padding: 0 1rem;
+}
+.px-2 {
+  padding: 0 2rem;
+}
+.px-3 {
+  padding: 0 3rem;
+}
+
+.py-3 {
+  padding: 1rem 0;
+}
+.py-3 {
+  padding: 2rem 0;
+}
+.py-3 {
+  padding: 3rem 0;
+}
