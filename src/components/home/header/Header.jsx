@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <header className="h-screen bg-[url(/iteration-1/home-banner.png)] bg-center bg-no-repeat bg-cover">
-      <div className="py-[32px] px-auto flex flex-col gap-8 items-center justify-center">
+      <div className="px-auto flex flex-col gap-8 items-center justify-center">
         <div className="w-[350px] text-white tek">
           <img src="/iteration-1/logo.svg" />
         </div>

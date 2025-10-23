@@ -7,6 +7,13 @@
 .font-satisfy {
   font-family: "Satisfy", cursive;
 }
+.font-quattrocento {
+  font-family: "Quattrocento", serif;
+}
+.radius {
+  border-radius: 50px;
+  padding: 0.8rem 1.5rem;
+}
 .ac {
   padding: 1rem 3rem;
 }
@@ -31,4 +38,28 @@
 }
 .py-3 {
   padding: 3rem 0;
+}
+.p-1 {
+  padding: 1rem;
+}
+.p-2 {
+  padding: 2rem;
+}
+
+.main-content-items {
+  padding: 0.5rem;
+  margin-top: 4rem;
+}
+.menu {
+  padding: 2rem 3rem;
+}
+.hack-text {
+  font-size: 2rem;
+}
+.main-content-title {
+  margin: 2rem auto;
+}
+.rounded1 {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
 }
