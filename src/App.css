@@ -63,3 +63,28 @@
   padding: 0.5rem 1rem;
   border-radius: 50px;
 }
+.main-content-food {
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+.pz1 {
+  padding: 1rem 1.5rem;
+}
+.inform {
+  margin: 1rem 0;
+}
+footer {
+  margin: 0 auto;
+  padding: 5rem 0 1rem 0;
+}
+.footer-main {
+  padding-bottom: 3rem;
+  margin: 2rem auto 0 auto;
+}
+.address {
+  margin-top: 2rem;
+}
+.footer-bottom {
+  margin: 1rem auto;
+  padding-top: 2rem;
+}
