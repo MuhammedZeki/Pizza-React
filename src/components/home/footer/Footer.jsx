@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col bg-[#1a1a1a] flex-wrap">
-      <div className="flex justify-center gap-20 footer-main">
+    <footer className="flex flex-col bg-[#1a1a1a] flex-wrap min-w-[400px]">
+      <div className="flex justify-center gap-20 footer-main flex-wrap">
         <div className="flex flex-col justify-start font-barlow w-[280px] gap-4 text-[1rem] text-white">
           <img src="/iteration-2/footer/logo-footer.svg" />
           <div className="gap-4 address flex justify-start">
@@ -36,9 +36,9 @@ const Footer = () => {
             <p>Acı burger</p>
           </div>
         </div>
-        <div className="flex flex-col justify-start font-barlow w-[280px] gap-4 text-[1rem] text-white">
+        <div className="flex flex-col justify-start font-barlow w-[280px] gap-4 text-[1rem] text-white ">
           <h2 className="font-semibold text-[1.5rem]">Instagram</h2>
-          <div className="flex justify-start items-center flex-wrap gap-4 w-[380px] py-3 ">
+          <div className="flex justify-start items-center flex-wrap gap-4 w-[280px] md:w-[380px] py-3 ">
             <img src="/iteration-2/footer/insta/li-0.png" />
             <img src="/iteration-2/footer/insta/li-1.png" />
             <img src="/iteration-2/footer/insta/li-2.png" />

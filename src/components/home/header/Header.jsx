@@ -8,10 +8,10 @@ const Header = () => {
           <img src="/iteration-1/logo.svg" />
         </div>
         <div className="flex flex-col items-center justify-center">
-          <span className="font-satisfy text-[#FDC913]  text-[2rem]  ">
+          <span className="font-satisfy text-[#FDC913]  text-[2rem]  hidden md:block">
             fırsatı kaçırma
           </span>
-          <p className="text-white  border-none cursor-pointer rounded-[48px] font-roboto-condensed font-light text-[5.3rem]">
+          <p className="text-white text-center border-none cursor-pointer rounded-[48px] font-roboto-condensed font-light text-[5.3rem]">
             KOD ACIKTIRIR
           </p>
           <p className="text-white text-center font-roboto-condensed font-light text-[5.3rem]">
