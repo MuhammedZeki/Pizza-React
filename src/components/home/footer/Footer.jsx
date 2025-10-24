@@ -49,7 +49,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom border-t text-white border-[#ffffff26] border-solid flex justify-around items-center w-full">
-        <p className="text-[1rem] font-barlow">© 2023 Teknolojik Yemekler</p>
+        <p className="text-[1rem] font-barlow">
+          © created by Muhammed Zeki Yılmaz
+        </p>
         <i className="fa-brands fa-twitter color-white w-[18px] h-[18px]"></i>
       </div>
     </footer>

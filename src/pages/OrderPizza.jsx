@@ -235,7 +235,7 @@ const OrderPizza = () => {
         className="max-w-4xl"
       >
         <div className="flex flex-col items-start justify-around gap-10  ">
-          <div className="flex items-center justify-between w-full">
+          <div className="flex flex-col items-start gap-8 md:flex-row md:items-center justify-between w-full">
             <div>
               <label
                 style={{ marginBottom: "1rem" }}
@@ -306,7 +306,7 @@ const OrderPizza = () => {
             </p>
             <div
               style={{ marginTop: "1.75rem" }}
-              className="grid grid-cols-3 gap-y-2 gap-x-6"
+              className="grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6"
             >
               {MALZEMELER.map((item, i) => (
                 <div key={i} className="flex items-center gap-4">
@@ -351,7 +351,7 @@ const OrderPizza = () => {
           </div>
           <div
             style={{ paddingTop: "1.5rem" }}
-            className="w-full flex justify-around items-start"
+            className="w-full flex flex-col items-center gap-8 md:flex-row md:justify-around md:items-start"
           >
             <div className="flex items-center">
               <button
@@ -375,7 +375,6 @@ const OrderPizza = () => {
                 +
               </button>
             </div>
-
             <div
               style={{ padding: "1.5rem" }}
               className="bg-[#FAF7F2]  rounded-lg w-96"
