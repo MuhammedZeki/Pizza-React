@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/home/footer/Footer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MENU_PIZZA } from "../data";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const initialState = {
   boyut: null,
@@ -103,6 +104,7 @@ const OrderPizza = () => {
   const [count, setCount] = useState(1);
   const [data, setData] = useState({});
   const { id } = useParams();
+  const navigate = useNavigate();
   console.log(formData);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -135,6 +137,28 @@ const OrderPizza = () => {
       }
     } else if (num > 0) {
       setCount(count + 1);
+    }
+  };
+  const handleApi = async () => {
+    try {
+      const generateId = Math.floor(Math.random() * 100);
+      const res = await axios.post(
+        "https://68fb675394ec96066025ec54.mockapi.io/orders/ordersPizza",
+        {
+          ...formData,
+          customId: generateId,
+          adet: count,
+          toplamFiyat: totalPrice,
+        }
+      );
+      if (res.data && res.status === 201) {
+        navigate(`/success/${generateId}`);
+      }
+      console.log("api", res.data);
+      toast.success("Sipariş başarıyla oluşturuldu!");
+    } catch (error) {
+      console.error("Hata:", error);
+      toast.error("Bir hata oluştu, lütfen tekrar dene.");
     }
   };
   useEffect(() => {
@@ -381,19 +405,7 @@ const OrderPizza = () => {
               <button
                 style={{ padding: "1rem 2rem", marginTop: "1rem" }}
                 className="w-full bg-[#FDC913] text-gray-900 text-md font-bold rounded-full  hover:bg-yellow-600 transition duration-200 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
-                onClick={() => {
-                  if (
-                    formData.malzemeler.length > 10 ||
-                    formData.malzemeler.length < 5
-                  ) {
-                    return toast.error(
-                      `En ${formData.malzemeler.length > 10 ? "fazla" : "az"} ${
-                        formData.malzemeler.length > 10 ? "10" : "5"
-                      } malzeme seçebilirsin!`
-                    );
-                  }
-                  toast.success("Sipariş başarıyla oluşturuldu!");
-                }}
+                onClick={handleApi}
                 disabled={
                   formData.malzemeler.length > 0
                     ? formData.malzemeler.length > 10 ||
