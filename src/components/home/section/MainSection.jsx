@@ -30,8 +30,10 @@ const MainSection = () => {
                 <p className="text-white w-[275px] font-barlow font-semibold text-[1.3rem]">
                   Acı Burger
                 </p>
-                <button className=" w-[138px]   transition-all duration-500 hover:scale-x-105 bg-white border-none text-[#CE2829] radius cursor-pointer font-barlow font-semibold">
-                  <Link to={`/order-pizza/${1}`}>SİPARİŞ VER</Link>
+                <button className=" w-[138px]  transition-all duration-500 hover:scale-x-105 bg-white border-none text-[#CE2829] radius cursor-pointer font-barlow font-semibold">
+                  <Link data-cy="order-button" to={`/order-pizza/${1}`}>
+                    SİPARİŞ VER
+                  </Link>
                 </button>
               </div>
               <div className="w-[400px] md:w-[530px] md:h-[449px] flex flex-col gap-1 justify-around items-center">
@@ -44,7 +46,9 @@ const MainSection = () => {
                     Burger Menu
                   </p>
                   <button className="  transition-all duration-500 hover:scale-x-105 w-[138px] bg-white border-none text-[#CE2829] radius cursor-pointer font-barlow font-semibold">
-                    <Link to={`/order-pizza/${1}`}>SİPARİŞ VER</Link>
+                    <Link data-cy="order-button" to={`/order-pizza/${1}`}>
+                      SİPARİŞ VER
+                    </Link>
                   </button>
                 </div>
                 <div className="bg-[url(/iteration-2/cta/kart-3.png)] w-[400px] md:w-[528px] rounded-xl bg-cover bg-no-repeat flex flex-col justify-start gap-4 p-2">
@@ -54,7 +58,9 @@ const MainSection = () => {
                   </p>
 
                   <button className="  transition-all duration-500 hover:scale-x-105 w-[138px] bg-white border-none text-[#CE2829] radius cursor-pointer font-barlow font-semibold">
-                    <Link to={`/order-pizza/${1}`}>SİPARİŞ VER</Link>
+                    <Link data-cy="order-button" to={`/order-pizza/${1}`}>
+                      SİPARİŞ VER
+                    </Link>
                   </button>
                 </div>
               </div>
@@ -74,28 +80,42 @@ const MainSection = () => {
                 key={i}
                 className="rounded1 gap-2 cursor-pointer hover:bg-amber-100  transition-all duration-500 bg-white flex justify-center items-center"
               >
-                <img src={item.src} />
-                <p>{item.text}</p>
+                <img data-cy={`menu-img-${i}`} src={item.src} />
+                <p data-cy={`menu-bar-text-${i}`}>{item.text}</p>
               </div>
             ))}
           </div>
           <div className="main-content-food  flex justify-center items-center gap-4 flex-wrap">
-            {MENU_PIZZA.map((item) => (
+            {MENU_PIZZA.map((item, index) => (
               <div
                 key={item.id}
                 className="w-[334px] rounded-2xl flex flex-col bg-white pz1 cursor-pointer"
                 onClick={() => anotherPage(item.id)}
+                data-cy={`pizza-card-${index}`}
               >
-                <img src={item.src} className="w-[270px]" />
+                <img
+                  data-cy={`pizza-img-${index}`}
+                  src={item.src}
+                  className="w-[270px]"
+                />
                 <div className="gap-4 p-1 flex flex-col items-start justify-center inform">
-                  <h3 className="font-barlow font-semibold text-[1.3rem]">
+                  <h3
+                    data-cy={`pizza-title-${index}`}
+                    className="font-barlow font-semibold text-[1.3rem]"
+                  >
                     {item.title}
                   </h3>
                   <div className="flex justify-between items-center w-full">
-                    <span className="font-barlow font-semibold text-[1rem] text-[#1b1b1bb2]">
+                    <span
+                      data-cy={`pizza-star-${index}`}
+                      className="font-barlow font-semibold text-[1rem] text-[#1b1b1bb2]"
+                    >
                       {item.star}
                     </span>
-                    <span className="font-barlow  font-semibold text-[1.2rem]">
+                    <span
+                      data-cy={`pizza-price-${index}`}
+                      className="font-barlow  font-semibold text-[1.2rem]"
+                    >
                       {item.price}₺
                     </span>
                   </div>

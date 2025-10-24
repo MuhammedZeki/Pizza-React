@@ -68,7 +68,7 @@ const Success = () => {
               Hamur : {data.kalinlik}
             </span>
           </div>
-          <div className="flex  gap-4 items-center justify-between">
+          <div className="flex text-center  gap-4 items-center justify-between">
             <span className="font-barlow font-semibold text-[1.25rem]">
               Ek Malzemeler : {data.malzemeler && data.malzemeler.join(", ")}
             </span>
@@ -87,7 +87,9 @@ const Success = () => {
               className="w flex items-center justify-between font-barlow font-semibold text-[1.125rem]"
             >
               <p className="w-3/4">Seçimler</p>
-              <p className="w-1/3">{data.malzemeler.length * 5}.00TL</p>
+              <p className="w-1/3">
+                {data.malzemeler && data.malzemeler.length * 5}.00TL
+              </p>
             </div>
             <div
               style={{ padding: "1rem 0" }}

@@ -2,6 +2,7 @@ import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import cypress from 'eslint-plugin-cypress'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
@@ -25,5 +26,18 @@ export default defineConfig([
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
+  },
+  // Cypress test dosyaları için
+  {
+    files: ['cypress/**/*.{js,jsx,ts,tsx}'],
+    plugins: { cypress },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...cypress.environments.globals,
+      },
+    },
+    rules: {},
   },
 ])

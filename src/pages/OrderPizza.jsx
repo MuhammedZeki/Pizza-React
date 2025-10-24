@@ -252,6 +252,7 @@ const OrderPizza = () => {
                         target: { name: "boyut", value: boyut, type: "radio" },
                       })
                     }
+                    data-cy={`size-${boyut}`}
                     className={`w-12 h-12 flex items-center justify-center rounded-full text-lg cursor-pointer transition-all duration-200 ${
                       formData.boyut === boyut
                         ? "bg-amber-500 text-white shadow-md"
@@ -283,6 +284,7 @@ const OrderPizza = () => {
                         },
                       })
                     }
+                    data-cy={`dough-${kalinlik}`}
                     style={{ padding: "1rem 2rem" }}
                     className={`flex items-center justify-center text-sm cursor-pointer rounded-lg transition-all duration-200 ${
                       formData.kalinlik === kalinlik
@@ -317,6 +319,7 @@ const OrderPizza = () => {
                     value={item.value}
                     className={` w-[45px] h-[45px] bg-[#FDC913] `}
                     onChange={handleChange}
+                    data-cy={`ingredient-${item.id}`}
                   />
                   <label
                     htmlFor={item.id}
@@ -357,6 +360,7 @@ const OrderPizza = () => {
               <button
                 style={{ padding: "1rem 2rem" }}
                 onClick={() => handleCount(-1)}
+                data-cy="decrease-btn"
                 className="text-2xl font-bold bg-[#FDC913] hover:bg-yellow-500 transition duration-150 rounded-l-md text-gray-900 cursor-pointer"
               >
                 -
@@ -365,11 +369,13 @@ const OrderPizza = () => {
                 type="text"
                 value={count}
                 readOnly
+                data-cy="quantity-input"
                 className="w-16 h-16 text-center text-xl font-medium border border-gray-300 focus:outline-none bg-white text-gray-900"
               />
               <button
                 style={{ padding: "1rem 2rem" }}
                 onClick={() => handleCount(1)}
+                data-cy="increase-btn"
                 className="cursor-pointer text-2xl font-bold bg-[#FDC913] hover:bg-yellow-500 transition duration-150 rounded-r-md text-gray-900"
               >
                 +
@@ -398,14 +404,15 @@ const OrderPizza = () => {
                 style={{ paddingTop: "0.5rem", marginTop: "1rem" }}
                 className="flex justify-between text-xl font-bold text-[#CE2829] border-t border-t-gray-300 "
               >
-                <span>Toplam</span>
-                <span>{totalPrice}₺</span>
+                <span data-cy="toplam">Toplam</span>
+                <span data-cy="total-price">{totalPrice}₺</span>
               </div>
 
               <button
                 style={{ padding: "1rem 2rem", marginTop: "1rem" }}
                 className="w-full bg-[#FDC913] text-gray-900 text-md font-bold rounded-full  hover:bg-yellow-600 transition duration-200 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
                 onClick={handleApi}
+                data-cy="submit-order-btn"
                 disabled={
                   formData.malzemeler.length > 0
                     ? formData.malzemeler.length > 10 ||

@@ -5,10 +5,13 @@ const Header = () => {
     <header className="h-screen bg-[url(/iteration-1/home-banner.png)] bg-center bg-no-repeat bg-cover">
       <div className="px-auto flex flex-col gap-8 items-center justify-center">
         <div className="w-[350px] text-white tek">
-          <img src="/iteration-1/logo.svg" />
+          <img data-cy="headerImg" src="/iteration-1/logo.svg" />
         </div>
         <div className="flex flex-col items-center justify-center">
-          <span className="font-satisfy text-[#FDC913]  text-[2rem]  hidden md:block">
+          <span
+            data-cy="title"
+            className="font-satisfy text-[#FDC913]  text-[2rem]  hidden md:block"
+          >
             fırsatı kaçırma
           </span>
           <p className="text-white text-center border-none cursor-pointer rounded-[48px] font-roboto-condensed font-light text-[5.3rem]">
