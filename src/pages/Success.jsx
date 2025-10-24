@@ -1,19 +1,38 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/home/footer/Footer";
 import { useParams } from "react-router-dom";
-import { MENU_PIZZA } from "../data";
+import axios from "axios";
 
 const Success = () => {
-  const { id } = useParams();
+  const { id: _id } = useParams();
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const fetchData = () => {
-      const item = MENU_PIZZA.find((item) => item.id === id);
-      setData(item || {});
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://68fb675394ec96066025ec54.mockapi.io/orders/ordersPizza"
+        );
+        const orders = response.data;
+        console.log(orders);
+        const foundOrder = orders.find(
+          (order) => order.customId === Number(_id)
+        );
+
+        if (foundOrder) {
+          setData(foundOrder);
+        } else {
+          console.log("Sipariş bulunamadı");
+          return null;
+        }
+      } catch (error) {
+        console.error("Hata:", error);
+        return null;
+      }
     };
     fetchData();
-  }, [id]);
+  }, [_id]);
+  console.log(data);
   return (
     <>
       <div
@@ -38,22 +57,20 @@ const Success = () => {
           style={{ padding: "1rem 0 0 0" }}
           className="flex flex-col items-center justify-center gap-4 text-white"
         >
-          <h2 className="text-2xl font-barlow font-semibold">
-            Position Absolute Acı Pizza
-          </h2>
+          <h2 className="text-2xl font-barlow font-semibold">{data.name}</h2>
           <div className="flex gap-4 items-center justify-between ">
             <span className="font-barlow font-semibold text-[1.25rem]">
-              Boyut: L
+              Boyut: {data.boyut}
             </span>
           </div>
           <div className="flex gap-4 items-center justify-between">
             <span className="font-barlow font-semibold text-[1.25rem]">
-              Hamur : İnce Hamur
+              Hamur : {data.kalinlik}
             </span>
           </div>
-          <div className="flex gap-4 items-center justify-between">
+          <div className="flex  gap-4 items-center justify-between">
             <span className="font-barlow font-semibold text-[1.25rem]">
-              Ek Malzemeler : Pepperoni, Sosis, Mısır, Ananas, Jalepeno
+              Ek Malzemeler : {data.malzemeler && data.malzemeler.join(", ")}
             </span>
           </div>
         </div>
@@ -70,14 +87,14 @@ const Success = () => {
               className="w flex items-center justify-between font-barlow font-semibold text-[1.125rem]"
             >
               <p className="w-3/4">Seçimler</p>
-              <p className="w-1/3">15.00TL</p>
+              <p className="w-1/3">{data.malzemeler.length * 5}.00TL</p>
             </div>
             <div
               style={{ padding: "1rem 0" }}
               className="w flex items-center justify-between font-barlow font-semibold text-[1.125rem]"
             >
               <p className="w-3/4">Toplam</p>
-              <p className="w-1/3">215.00TL</p>
+              <p className="w-1/3">{data.toplamFiyat}.00TL</p>
             </div>
           </div>
         </div>

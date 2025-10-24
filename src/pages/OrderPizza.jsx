@@ -146,6 +146,7 @@ const OrderPizza = () => {
         "https://68fb675394ec96066025ec54.mockapi.io/orders/ordersPizza",
         {
           ...formData,
+          name: data.title,
           customId: generateId,
           adet: count,
           toplamFiyat: totalPrice,
