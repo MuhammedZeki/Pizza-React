@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/home/footer/Footer";
+import { useParams } from "react-router-dom";
+import { MENU_PIZZA } from "../data";
+import { toast } from "react-toastify";
 
 const initialState = {
   boyut: null,
@@ -97,7 +100,10 @@ const MALZEMELER = [
 const HAMUR_SECENEKLERI = ["İnce", "Normal", "Kalın"];
 const OrderPizza = () => {
   const [formData, setFormData] = useState(initialState);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+  const [data, setData] = useState({});
+  const { id } = useParams();
+  console.log(formData);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -124,14 +130,26 @@ const OrderPizza = () => {
   };
   const handleCount = (num) => {
     if (num < 0) {
-      if (count > 0) {
+      if (count > 1) {
         setCount(count - 1);
       }
     } else if (num > 0) {
       setCount(count + 1);
     }
   };
-  console.log(formData);
+  useEffect(() => {
+    const fetchData = () => {
+      const gelenUrun = MENU_PIZZA.find((m) => m.id === Number(id));
+      if (gelenUrun) {
+        setData(gelenUrun);
+      } else {
+        console.warn("Ürün bulunamadı:", id);
+      }
+    };
+    fetchData();
+  }, [id]);
+  const malzemelerTotalPrice = formData.malzemeler.length * 5;
+  const totalPrice = (data.price + malzemelerTotalPrice) * count;
   return (
     <div>
       <div className="bg-[#C20608] w-full h-[138px] flex items-center justify-center">
@@ -143,10 +161,7 @@ const OrderPizza = () => {
           className="w-2/3 flex flex-col justify-center gap-4"
         >
           <div className="flex justify-center">
-            <img
-              src="/iteration-2/pictures/form-banner.png"
-              className="w-[581px]"
-            />
+            <img src={data.src} className="w-[350px] " />
           </div>
           <div
             style={{ margin: "3rem auto" }}
@@ -162,15 +177,15 @@ const OrderPizza = () => {
             </div>
             <div className="flex flex-col gap-8 items-start">
               <h2 className="font-barlow font-semibold text-2xl text-[#292929]">
-                Position Absolute Acı Pizza
+                {data.title}
               </h2>
               <div className="flex items-center justify-between w-full">
                 <span className="font-barlow font-bold text-[1.75rem]">
-                  85.50TL
+                  {data.price}.00TL
                 </span>
                 <div className="flex items-center justify-between gap-12">
                   <span className="font-barlowtext-[1rem] font-normal text-[#5F5F5F]">
-                    4.9
+                    {data.star}
                   </span>
                   <span className="font-barlow text-[1rem] font-normal text-[#5F5F5F]">
                     (200)
@@ -194,7 +209,7 @@ const OrderPizza = () => {
         style={{ margin: "2rem auto", padding: "1rem 2rem" }}
         className="max-w-4xl"
       >
-        <div className="flex flex-col items-start justify-around gap-10  pb-6 ">
+        <div className="flex flex-col items-start justify-around gap-10  ">
           <div className="flex items-center justify-between w-full">
             <div>
               <label
@@ -261,7 +276,8 @@ const OrderPizza = () => {
               Ek Malzemeler
             </h3>
             <p className="text-gray-600 text-sm mb-4">
-              En Fazla 10 malzeme seçebilirsiniz. 5₺
+              En Fazla 10 malzeme seçebilirsiniz. 5₺ (En az 5, en fazla 10
+              malzeme seçebilirsiniz)
             </p>
             <div
               style={{ marginTop: "1.75rem" }}
@@ -308,7 +324,6 @@ const OrderPizza = () => {
               onChange={handleChange}
             ></textarea>
           </div>
-          {/* BURAYA */}
           <div
             style={{ paddingTop: "1.5rem" }}
             className="w-full flex justify-around items-start"
@@ -352,7 +367,7 @@ const OrderPizza = () => {
                 className="flex justify-between font-barlow text-gray-700"
               >
                 <span>Seçimler</span>
-                <span>55₺</span>
+                <span>{malzemelerTotalPrice}₺</span>
               </div>
 
               <div
@@ -360,12 +375,31 @@ const OrderPizza = () => {
                 className="flex justify-between text-xl font-bold text-[#CE2829] border-t border-t-gray-300 "
               >
                 <span>Toplam</span>
-                <span>55₺</span>
+                <span>{totalPrice}₺</span>
               </div>
 
               <button
                 style={{ padding: "1rem 2rem", marginTop: "1rem" }}
-                className="w-full bg-[#FDC913] text-gray-900 text-md font-bold rounded-full  hover:bg-yellow-600 transition duration-200 cursor-pointer"
+                className="w-full bg-[#FDC913] text-gray-900 text-md font-bold rounded-full  hover:bg-yellow-600 transition duration-200 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
+                onClick={() => {
+                  if (
+                    formData.malzemeler.length > 10 ||
+                    formData.malzemeler.length < 5
+                  ) {
+                    return toast.error(
+                      `En ${formData.malzemeler.length > 10 ? "fazla" : "az"} ${
+                        formData.malzemeler.length > 10 ? "10" : "5"
+                      } malzeme seçebilirsin!`
+                    );
+                  }
+                  toast.success("Sipariş başarıyla oluşturuldu!");
+                }}
+                disabled={
+                  formData.malzemeler.length > 0
+                    ? formData.malzemeler.length > 10 ||
+                      formData.malzemeler.length < 5
+                    : false
+                }
               >
                 SİPARİŞ VER
               </button>

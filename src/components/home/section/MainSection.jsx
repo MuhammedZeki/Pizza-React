@@ -1,6 +1,11 @@
+import { Link, useNavigate } from "react-router-dom";
 import { MENU_BAR, MENU_BAR_V2, MENU_PIZZA } from "../../../data";
 
 const MainSection = () => {
+  const navigate = useNavigate();
+  const anotherPage = (id) => {
+    navigate(`/order-pizza/${id}`);
+  };
   return (
     <main>
       <div className=" flex flex-col gap-4  justify-center">
@@ -26,7 +31,7 @@ const MainSection = () => {
                   Acı Burger
                 </p>
                 <button className=" w-[138px]   transition-all duration-500 hover:scale-x-105 bg-white border-none text-[#CE2829] radius cursor-pointer font-barlow font-semibold">
-                  SİPARİŞ VER
+                  <Link to={`/order-pizza/${1}`}>SİPARİŞ VER</Link>
                 </button>
               </div>
               <div className="w-[400px] md:w-[530px] md:h-[449px] flex flex-col gap-1 justify-around items-center">
@@ -39,7 +44,7 @@ const MainSection = () => {
                     Burger Menu
                   </p>
                   <button className="  transition-all duration-500 hover:scale-x-105 w-[138px] bg-white border-none text-[#CE2829] radius cursor-pointer font-barlow font-semibold">
-                    SİPARİŞ VER
+                    <Link to={`/order-pizza/${1}`}>SİPARİŞ VER</Link>
                   </button>
                 </div>
                 <div className="bg-[url(/iteration-2/cta/kart-3.png)] w-[400px] md:w-[528px] rounded-xl bg-cover bg-no-repeat flex flex-col justify-start gap-4 p-2">
@@ -49,7 +54,7 @@ const MainSection = () => {
                   </p>
 
                   <button className="  transition-all duration-500 hover:scale-x-105 w-[138px] bg-white border-none text-[#CE2829] radius cursor-pointer font-barlow font-semibold">
-                    SİPARİŞ VER
+                    <Link to={`/order-pizza/${1}`}>SİPARİŞ VER</Link>
                   </button>
                 </div>
               </div>
@@ -78,7 +83,8 @@ const MainSection = () => {
             {MENU_PIZZA.map((item) => (
               <div
                 key={item.id}
-                className="w-[334px] rounded-2xl flex flex-col bg-white pz1"
+                className="w-[334px] rounded-2xl flex flex-col bg-white pz1 cursor-pointer"
+                onClick={() => anotherPage(item.id)}
               >
                 <img src={item.src} className="w-[270px]" />
                 <div className="gap-4 p-1 flex flex-col items-start justify-center inform">
